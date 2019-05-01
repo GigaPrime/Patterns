@@ -1,7 +1,4 @@
 #include <iostream>
-#include "TypeOfDuck.h"
-#include "Float.h"
-#include "Quack.h"
 #include "Duck.h"
 
 using namespace  std;
