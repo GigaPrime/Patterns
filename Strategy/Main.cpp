@@ -12,6 +12,7 @@ void main()
 	IFloat * iFloat = new Floating;
 	IFly * iFly = new Flyable;
 	IQuack * iQuack = new Mute;
+	IEat * iEat = new EatFish;
 
 	Duck * d = new Duck;
 	d->setTypeOfDuck(tDuck);
@@ -23,8 +24,9 @@ void main()
 	cout << d->getIFloat()->printFloatAbility();
 	cout << d->getIQuack()->quackAbility();
 
-	Duck d2(tDuck, iFloat, iFly, iQuack);
+	Duck d2(tDuck, iFloat, iFly, iQuack, iEat);
 	cout << d2.getITypeOfDuck()->printTypeOfDuck();
+	cout << d2.getIsEating()->printEatAbility();
 
 	system("Pause");
 }

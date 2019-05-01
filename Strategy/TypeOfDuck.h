@@ -3,8 +3,6 @@
 
 using namespace std;
 
-//----------Interface----------
-
 class ITypeOfDuck
 {
 protected:
@@ -21,16 +19,12 @@ public:
 	string getMaterial() const { return  material; }
 };
 
-//----------Implementetaion----------
-
 class NaturalDuck : public ITypeOfDuck
 {
 public:
 	NaturalDuck() {material = "meat"; }
 	string printTypeOfDuck() override { return "This duck is natural and made of " + material + "\n"; }
 };
-
-//----------Implementation----------
 
 class ArtificialDuck : public ITypeOfDuck
 {
