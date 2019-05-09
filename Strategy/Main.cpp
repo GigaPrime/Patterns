@@ -1,29 +1,31 @@
 #include <iostream>
-#include "Duck.h"
+#include "UI.h"
 
 using namespace  std;
 
+void intro();
+
 void main()
 {
-	ITypeOfDuck * tDuck = new NaturalDuck;
-	IFloat * iFloat = new Floating;
-	IFly * iFly = new Flyable;
-	IQuack * iQuack = new Mute;
-	IEat * iEat = new EatFish;
-
-	Duck * d = new Duck;
-	d->setTypeOfDuck(tDuck);
-	d->setIFloat(iFloat);
-	d->setIFly(iFly);
-	d->setIQuack(iQuack);
-
-	cout << d->getITypeOfDuck()->printTypeOfDuck();
-	cout << d->getIFloat()->printFloatAbility();
-	cout << d->getIQuack()->quackAbility();
-
-	Duck d2(tDuck, iFloat, iFly, iQuack, iEat);
-	cout << d2.getITypeOfDuck()->printTypeOfDuck();
-	cout << d2.getIsEating()->printEatAbility();
+	intro();
+	UserInterface * ui = new UserInterface;
+	ui->printDuck(ui->createDuck(ui->selectSettings()));
 
 	system("Pause");
+}
+
+void intro()
+{
+	string input;
+
+	cout << "\n\n\t\t\tDUCK GENERATOR\n\n";
+	cout << "\t\t      (c) Denis Styopkin\n\n";
+	cout << "\tThis programm simulates \"Strategy\" GOF pattern.\n\n";
+	cout << "\tWhile answering questions, user is allowed to write \n\tany text but usage of keywords (e.g. \"natural\" or \"stone\") \n\tis a must.\n\n";
+	cout << "\tLatin (English) keyboard layout is the only one to be used.\n\n";
+
+	cout << "\tAre You ready to go on? \n\t";
+	getline(cin, input);
+	system("cls");
+	return;
 }

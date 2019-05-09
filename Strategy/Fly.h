@@ -26,5 +26,5 @@ class NonFlyable : public IFly
 {
 public:
 	NonFlyable() { isFlyable = false; }
-	string printFlyAbility() override { return "This duck can fly\n"; }
+	string printFlyAbility() override { return "This duck can't fly\n"; }
 };

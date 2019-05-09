@@ -1,5 +1,5 @@
 #pragma once
-#include  "TypeOfDuck.h"
+#include "TypeOfDuck.h"
 #include "Float.h"
 #include "Quack.h"
 #include "Fly.h"
@@ -8,13 +8,12 @@
 class Duck
 {
 protected:
-	ITypeOfDuck * typeOfDuck;
-	IFloat * iFloat;
-	IFly * iFly;
-	IQuack * iQuack;
-	IEat * iEat;
+	ITypeOfDuck * typeOfDuck = nullptr;
+	IFloat * iFloat = nullptr;
+	IFly * iFly = nullptr;
+	IQuack * iQuack = nullptr;
+	IEat * iEat = nullptr;
 public:
-	
 	void setTypeOfDuck(ITypeOfDuck * typeOfDuck) { this->typeOfDuck = typeOfDuck; }
 	void setIFloat(IFloat * iFloat) { this->iFloat = iFloat; }
 	void setIFly(IFly * iFly) { this->iFly = iFly; }

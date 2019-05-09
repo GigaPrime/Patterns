@@ -6,13 +6,13 @@ using namespace std;
 class ITypeOfDuck
 {
 protected:
-	double weight;
+	float weight;
 	string material;
 public:
 	virtual string printTypeOfDuck() = 0;
 	virtual ~ITypeOfDuck() = 0 {};
 
-	void setWeight(double weight) { this->weight = weight; }
+	void setWeight(float weight) { this->weight = weight; }
 	void setMaterial(string material) { this->material = material; }
 
 	double getWeight() const { return weight; }
@@ -23,11 +23,11 @@ class NaturalDuck : public ITypeOfDuck
 {
 public:
 	NaturalDuck() {material = "meat"; }
-	string printTypeOfDuck() override { return "This duck is natural and made of " + material + "\n"; }
+	string printTypeOfDuck() override { return "This duck is natural and made of " + material + " and has weight of " + to_string(weight) + " kg\n"; }
 };
 
 class ArtificialDuck : public ITypeOfDuck
 {
 public:
-	string printTypeOfDuck() override { return "This duck is asrtificial and made of " + material + "\n"; }
+	string printTypeOfDuck() override { return "This duck is artificial and made of " + material + " and has weight of " + to_string(weight) + " kg\n"; }
 };

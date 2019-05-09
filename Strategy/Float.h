@@ -14,7 +14,6 @@ public:
 	bool getIsFloating() const { return isFloating; }
 };
 
-
 class Floating : public IFloat
 {
 public:
