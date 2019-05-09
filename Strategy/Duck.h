@@ -20,11 +20,11 @@ public:
 	void setIQuack(IQuack * iQuack) { this->iQuack = iQuack; }
 	void setIEat(IEat * iEat) { this->iEat = iEat; }
 
-	ITypeOfDuck * getITypeOfDuck() const { return typeOfDuck; }
-	IFloat * getIFloat() const { return iFloat; }
-	IFly * getIFly() const { return iFly; }
-	IQuack * getIQuack() const { return iQuack; }
-	IEat * getIsEating() const { return iEat; }
+	string getITypeOfDuck() const { return typeOfDuck->getTypeOfDuck(); }
+	string getIFloat() const { return iFloat->getFloatAbility(); }
+	string getIFly() const { return iFly->getFlyAbility(); }
+	string getIQuack() const { return iQuack->quackAbility(); }
+	string getIsEating() const { return iEat->getEatAbility(); }
 
 	Duck() { typeOfDuck, iFloat, iFly, iQuack; iEat; };
 	Duck(ITypeOfDuck * tD, IFloat * iF, IFly * iFl, IQuack * iQ, IEat * iE) { typeOfDuck = tD; iFloat = iF; iFly = iFl; iQuack = iQ; iEat = iE; }

@@ -9,7 +9,7 @@ protected:
 	float weight;
 	string material;
 public:
-	virtual string printTypeOfDuck() = 0;
+	virtual string getTypeOfDuck() = 0;
 	virtual ~ITypeOfDuck() = 0 {};
 
 	void setWeight(float weight) { this->weight = weight; }
@@ -23,11 +23,11 @@ class NaturalDuck : public ITypeOfDuck
 {
 public:
 	NaturalDuck() {material = "meat"; }
-	string printTypeOfDuck() override { return "This duck is natural and made of " + material + " and has weight of " + to_string(weight) + " kg\n"; }
+	string getTypeOfDuck() override { return "This duck is natural and made of " + material + " and has weight of " + to_string(weight) + " kg\n"; }
 };
 
 class ArtificialDuck : public ITypeOfDuck
 {
 public:
-	string printTypeOfDuck() override { return "This duck is artificial and made of " + material + " and has weight of " + to_string(weight) + " kg\n"; }
+	string getTypeOfDuck() override { return "This duck is artificial and made of " + material + " and has weight of " + to_string(weight) + " kg\n"; }
 };

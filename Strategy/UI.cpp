@@ -191,8 +191,8 @@ Duck * UserInterface::createDuck(vector<string> settings) const
 
 void UserInterface::printDuck(Duck* duck)
 {
-	cout << duck->getITypeOfDuck()->printTypeOfDuck();
-	cout << duck->getIFloat()->printFloatAbility();
-	cout << duck->getIFly()->printFlyAbility();
-	cout << duck->getIsEating()->printEatAbility();
+	cout << duck->getITypeOfDuck();
+	cout << duck->getIFloat();
+	cout << duck->getIFly();
+	cout << duck->getIsEating();
 }
