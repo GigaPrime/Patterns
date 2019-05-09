@@ -11,6 +11,7 @@ void main()
 	UserInterface * ui = new UserInterface;
 	ui->printDuck(ui->createDuck(ui->selectSettings()));
 
+	delete ui;
 	system("Pause");
 }
 
