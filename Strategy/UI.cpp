@@ -3,9 +3,8 @@
 
 using namespace std;
 
-vector<string> UserInterface::selectSettings() const
+void UserInterface::selectSettings() const
 {
-	vector<string> duckSettings;
 	string input;
 	string searchPattern1 = "";
 	string searchPattern2 = "";
@@ -20,14 +19,14 @@ vector<string> UserInterface::selectSettings() const
 		getline(cin, input);
 		tmp = isInputContains(input, searchPattern1, searchPattern2);
 	} while (incorrectInput == tmp);
-	duckSettings.push_back(tmp);
+	duckSettings->push_back(tmp);
 	
 	if(natural == tmp)
 	{
 		// all natural ducks are made of meat able float and fly
-		duckSettings.push_back(madeOfMeat);
-		duckSettings.push_back(ableToFloat);
-		duckSettings.push_back(ableToFly);
+		duckSettings->push_back(madeOfMeat);
+		duckSettings->push_back(ableToFloat);
+		duckSettings->push_back(ableToFly);
 	
 		cout << "Can the duck quack or can it squeak or is duck mute?\n";
 		searchPattern1 = ableToQuack;
@@ -38,7 +37,7 @@ vector<string> UserInterface::selectSettings() const
 			getline(cin, input);
 			tmp = isInputContains(input, searchPattern1, searchPattern2, searchPattern3);
 		} while (incorrectInput == tmp);
-		duckSettings.push_back(tmp);
+		duckSettings->push_back(tmp);
 
 		cout << "Does the duck eat fish or grass?\n";
 		searchPattern1 = eatFish;
@@ -48,7 +47,7 @@ vector<string> UserInterface::selectSettings() const
 			getline(cin, input);
 			tmp = isInputContains(input, searchPattern1, searchPattern2);
 		} while (incorrectInput == tmp);
-		duckSettings.push_back(tmp);
+		duckSettings->push_back(tmp);
 	}
 	else if (artificial == tmp)
 	{
@@ -62,31 +61,47 @@ vector<string> UserInterface::selectSettings() const
 			getline(cin, input);
 			tmp = isInputContains(input, searchPattern1, searchPattern2, searchPattern3);
 		} while (incorrectInput == tmp);
-		duckSettings.push_back(tmp);
+		duckSettings->push_back(tmp);
 		if(madeOfStone == tmp)
 		{
-			duckSettings.push_back(notAbleToFloat);
-			duckSettings.push_back(notAbleToFly);
-			duckSettings.push_back(notAbleToQuack);
-			duckSettings.push_back(eatNothing);
+			duckSettings->push_back(notAbleToFloat);
+			duckSettings->push_back(notAbleToFly);
+			duckSettings->push_back(notAbleToQuack);
+			duckSettings->push_back(eatNothing);
 		}
 		else if(madeOfWood == tmp)
 		{
-			duckSettings.push_back(ableToFloat);
-			duckSettings.push_back(notAbleToFly);
-			duckSettings.push_back(notAbleToQuack);
-			duckSettings.push_back(eatNothing);
+			duckSettings->push_back(ableToFloat);
+			duckSettings->push_back(notAbleToFly);
+			duckSettings->push_back(notAbleToQuack);
+			duckSettings->push_back(eatNothing);
 		}
 		else if(madeOfRubber == tmp)
 		{
-			duckSettings.push_back(ableToFloat);
-			duckSettings.push_back(notAbleToFly);
-			duckSettings.push_back(ableToQuack);
-			duckSettings.push_back(eatNothing);
+			duckSettings->push_back(ableToFloat);
+			duckSettings->push_back(notAbleToFly);
+			duckSettings->push_back(ableToQuack);
+			duckSettings->push_back(eatNothing);
 		}
 	}
-	duckSettings.shrink_to_fit();
-	return duckSettings;
+	duckSettings->shrink_to_fit();
+}
+
+void UserInterface::changeSettings() const
+{
+	string input;
+	string tmp;
+	cout << "Want to make some changes to the Duck You've been already created?\n\n";
+	do
+	{
+		getline(cin, input);
+		tmp = isInputContains(input, "no", "yes");
+	} while ("no" == tmp || "yes" == tmp);
+	
+	if ("no" == tmp)
+		return;
+	else
+		selectSettings();
 }
 
 string UserInterface::isInputContains (string input, string searchPattern1, string searchPattern2) const
@@ -114,48 +129,48 @@ string UserInterface::isInputContains(string input, string searchPattern1, strin
 	return incorrectInput;
 }
 
-Duck * UserInterface::createDuck(vector<string> settings) const
+Duck * UserInterface::createDuck() const
 {
 	ITypeOfDuck * tDuck = nullptr;
 	IFloat * iFloat = nullptr;
 	IFly * iFly = nullptr;
 	IQuack * iQuack = nullptr;
 	IEat * iEat = nullptr;
-	Duck * finalDuck = new Duck;
+	static Duck * finalDuck = new Duck; //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-	if(eatNothing == settings.back())
+	if(eatNothing == duckSettings->back())
 		iEat = new EatNothing;
-	else if(eatGrass == settings.back())
+	else if(eatGrass == duckSettings->back())
 		iEat = new EatGrass;
-	else if(eatFish == settings.back())
+	else if(eatFish == duckSettings->back())
 		iEat = new EatFish;
 	customDuck->setIEat(iEat);
-	settings.pop_back();
+	duckSettings->pop_back();
 
-	if (ableToQuack == settings.back())
+	if (ableToQuack == duckSettings->back())
 		iQuack = new Quackable;
-	else if (ableToSquek == settings.back())
+	else if (ableToSquek == duckSettings->back())
 		iQuack = new Squeakable;
-	else if (notAbleToQuack == settings.back())
+	else if (notAbleToQuack == duckSettings->back())
 		iQuack = new Mute;
 	customDuck->setIQuack(iQuack);
-	settings.pop_back();
+	duckSettings->pop_back();
 
-	if (ableToFly == settings.back())
+	if (ableToFly == duckSettings->back())
 		iFly = new Flyable;
-	else if (notAbleToFly == settings.back())
+	else if (notAbleToFly == duckSettings->back())
 		iFly = new NonFlyable;
 	customDuck->setIFly(iFly);
-	settings.pop_back();
+	duckSettings->pop_back();
 
-	if (ableToFloat == settings.back())
+	if (ableToFloat == duckSettings->back())
 		iFloat = new Floating;
-	else if (notAbleToFloat == settings.back())
+	else if (notAbleToFloat == duckSettings->back())
 		iFloat = new NonFloating;
 	customDuck->setIFloat(iFloat);
-	settings.pop_back();
+	duckSettings->pop_back();
 
-	if (madeOfMeat == settings.back())
+	if (madeOfMeat == duckSettings->back())
 	{
 		tDuck = new NaturalDuck;
 		tDuck->setMaterial(madeOfMeat);
@@ -164,17 +179,17 @@ Duck * UserInterface::createDuck(vector<string> settings) const
 	else
 		tDuck = new ArtificialDuck;
 	
-	if(madeOfRubber == settings.back())
+	if(madeOfRubber == duckSettings->back())
 	{
 		tDuck->setMaterial(madeOfRubber);
 		tDuck->setWeight(0.5);
 	}
-	else if(madeOfWood == settings.back())
+	else if(madeOfWood == duckSettings->back())
 	{
 		tDuck->setMaterial(madeOfWood);
 		tDuck->setWeight(3.0);
 	}
-	else if(madeOfStone == settings.back())
+	else if(madeOfStone == duckSettings->back())
 	{
 		tDuck->setMaterial(madeOfStone);
 		tDuck->setWeight(1.5);
@@ -185,6 +200,8 @@ Duck * UserInterface::createDuck(vector<string> settings) const
 	finalDuck->setIFly(iFly);
 	finalDuck->setIQuack(iQuack);
 	finalDuck->setIEat(iEat);
+
+	cout << finalDuck << endl;
 
 	return finalDuck;
 }

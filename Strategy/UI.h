@@ -23,6 +23,8 @@ private:
 	string eatNothing = "noEat";
 	string incorrectInput = "error";
 
+	vector<string> * duckSettings = new vector<string>;
+
 	Duck * customDuck = new Duck;
 
 	string isInputContains (string, string, string) const;
@@ -31,7 +33,8 @@ public:
 	
 	~UserInterface() { delete customDuck; }
 
-	vector<string> selectSettings() const;
-	Duck * createDuck(vector<string> settings) const;
+	void selectSettings() const;
+	void changeSettings() const;
+	Duck * createDuck() const;
 	static void printDuck(Duck * duck);
 };

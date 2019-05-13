@@ -9,7 +9,10 @@ void main()
 {
 	intro();
 	UserInterface * ui = new UserInterface;
-	ui->printDuck(ui->createDuck(ui->selectSettings()));
+	ui->selectSettings();
+	ui->printDuck(ui->createDuck());
+	ui->changeSettings();
+	ui->printDuck(ui->createDuck());
 
 	delete ui;
 	system("Pause");
