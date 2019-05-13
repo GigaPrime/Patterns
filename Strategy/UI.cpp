@@ -136,7 +136,6 @@ Duck * UserInterface::createDuck() const
 	IFly * iFly = nullptr;
 	IQuack * iQuack = nullptr;
 	IEat * iEat = nullptr;
-	static Duck * finalDuck = new Duck; //!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 	if(eatNothing == duckSettings->back())
 		iEat = new EatNothing;
@@ -195,15 +194,15 @@ Duck * UserInterface::createDuck() const
 		tDuck->setWeight(1.5);
 	}
 
-	finalDuck->setTypeOfDuck(tDuck);
-	finalDuck->setIFloat(iFloat);
-	finalDuck->setIFly(iFly);
-	finalDuck->setIQuack(iQuack);
-	finalDuck->setIEat(iEat);
+	customDuck->setTypeOfDuck(tDuck);
+	customDuck->setIFloat(iFloat);
+	customDuck->setIFly(iFly);
+	customDuck->setIQuack(iQuack);
+	customDuck->setIEat(iEat);
 
-	cout << finalDuck << endl;
+	cout << customDuck << endl;
 
-	return finalDuck;
+	return customDuck;
 }
 
 void UserInterface::printDuck(Duck* duck)
